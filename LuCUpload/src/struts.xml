@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.locale" value="ko_KR" />
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.multipart.maxSize" value="51024000" />
+
+	<include file="struts_config/struts-luxsky.xml" />
+	
+	<package name="luxsky-web-default" extends="struts-default,tiles-default">
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="basicStack" />
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="MarPlatformException" result="MarPlatformException" />
+		</global-exception-mappings>
+	</package>
+
+	<package name="luxsky-json-default" extends="struts-default,json-default">
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="basicStack" />
+			</interceptor-stack>
+		</interceptors>
+	</package>
+</struts>
